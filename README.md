@@ -3,6 +3,6 @@ One of the design patterns explained in the book [**Design Patterns - Elements o
 
 # Presentation
 I'm going to present this design pattern with an example as a part of our programmming class in school.
-The presentation will be around ten minutes and the example will be the result of 20-40 hours of work.
+The presentation will be around ten minutes and the example will be the result of 20-40 hours of work, but unfortunaly I have to write everything I will present in german.
 
 If you want information regarding myself visit my [website](www.jonasreichhardt.at)
