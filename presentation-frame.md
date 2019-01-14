@@ -25,6 +25,9 @@ q0 ε Q = Startzustand
 F  = Teilmenge von Q, Menge der akzeptierenden Zustände
 ```
 
+[Bachelorarbeit Manske Kapitel 2.1.2 & 3.3](bachelorarbeit-manske.pdf)
+
+
 | Katalognummer | Name         | Pattern  | Wunschdatum |
 | ------------- | ------------ | -------- | ----------- |
 | 1             | Baylan       | Iterator | 26. März    |
