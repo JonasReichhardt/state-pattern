@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<script type="module" src="./index.js"></script>
+		<script type="module" src="./Parser.js"></script>
+		<script type="module" src="./Tokenizer.js"></script>
+
+		<style>
+			table {
+			  font-family: arial, sans-serif;
+			  border-collapse: collapse;
+			  width: 50%;
+			}
+			
+			td, th {
+			  border: 1px solid #dddddd;
+			  text-align: left;
+			  padding: 8px;
+			}
+			
+			tr:nth-child(even) {
+			  background-color: #dddddd;
+			}
+			</style>
+	</head>
+	<body>
+		<h1>SQL Parser</h1>
+		<br>
+		<input id="input" type="text" placeholder="SQL-Kommando eingeben"><button id="parse">Parsen</button>
+		<br><br>
+		<table>
+			<tr id="attr">
+				<td>Attr1</td>
+				<td>Attr2</td>
+				<td>Attr3</td>
+				<td>Attr4</td>
+				<td>Attr5</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+		<br><br>
+		<svg id="graph" style="border: 1px solid black;" height="500" width="1000">
+				<line x1="25" y1="250" x2="100" y2="100" style="stroke:rgb(0, 0, 0);stroke-width:2" />
+				<text fill="black" font-size="20" font-family="Verdana" x="70" y="180">SELECT</text>
+				<circle id="startNode" cx="25" cy="250" r="20" stroke="black" stroke-width="4" fill="gray" />
+				<circle id="node1" cx="100" cy="100" r="20" stroke="black" stroke-width="4" fill="gray" />
+		</svg>
+	</body>
+</html>
