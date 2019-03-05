@@ -1,39 +1,30 @@
-import { Tokenizer } from "./Tokenizer.js";
-import { SQLParser } from "./Parser.js";
-
-var nodes = [];
+let nodes = new Array();
 
 window.addEventListener("DOMContentLoaded", main);
+document.getElementById("parse").addEventListener("click", parse);
 
-async function main(){
-	document.getElementById("parse").addEventListener("click",parse);
-	getNodes();
-
-	setTimeout(() => {
-		nodes[0].setAttribute("stroke","red");
-		setTimeout(() => {
-			nodes[0].setAttribute("stroke","black");
-			nodes[1].setAttribute("stroke","red");
-		}, 1000);
-	}, 1000);
+function main() {
+    getNodes();
+    
 }
-
-function getNodes(){
-	nodes.push(document.getElementById("startNode"));
-	nodes.push(document.getElementById("node1"));
+function getNodes() {
+    nodes.push(document.getElementById("startNode"));
+    nodes.push(document.getElementById("node1"));
+    nodes.push(document.getElementById("node2"));
 }
-
-function parse(){
-	var input = document.getElementById("input").value;
-	var attr = document.getElementById("attr").nodeValue;
-
-	for(var at in attr){
-		console.log(at.value);
-	}
-
-	var tokenizer = new Tokenizer(input, attr);
-	var tokens = tokenizer.tokenize();
-	
-	var parser = new SQLParser(tokens);
-	parser.parse();
+function parse() {
+    setTimeout(() => {
+        nodes[0].setAttribute("stroke", "red");
+        setTimeout(() => {
+            nodes[0].setAttribute("stroke", "black");
+            nodes[1].setAttribute("stroke", "red");
+            setTimeout(()=>{
+                nodes[1].setAttribute("stroke","black")
+                nodes[2].setAttribute("stroke","red");
+                setTimeout(()=>{
+                    nodes[2].setAttribute("stroke","black")
+                },2000)
+            },2000)
+        }, 2000);
+    }, 1000);
 }

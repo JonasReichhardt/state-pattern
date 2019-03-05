@@ -6,3 +6,13 @@ I'm going to present this design pattern with an example as a part of our progra
 The presentation will be around ten minutes and the example will be the result of 20-40 hours of work, but unfortunaly I have to write everything I will present in german.
 
 If you want information regarding myself visit my [website](www.jonasreichhardt.at)
+
+
+
+## TODO
+
+Refactor States so only one context.changeState() at the end is called. (in Parse() method set int and at the and call the function and return)
+
+Consider * in the attributes. 
+
+Check if table has the selected attributes (in Parser.cs new Property named selectedAttr)

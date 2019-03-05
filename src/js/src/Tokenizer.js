@@ -1,7 +1,7 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class Tokenizer {
-    constructor(input) {
+exports.__esModule = true;
+var Tokenizer = /** @class */ (function () {
+    function Tokenizer(input) {
         if (input != null && input !== "") {
             this.input = input;
         }
@@ -9,13 +9,13 @@ class Tokenizer {
             this.input = "";
         }
     }
-    tokenize() {
-        let tokens = this.input.split(" ");
-        let ret = [];
-        for (let i = 0; i < tokens.length; i++) {
+    Tokenizer.prototype.tokenize = function () {
+        var tokens = this.input.split(" ");
+        var ret = [];
+        for (var i = 0; i < tokens.length; i++) {
             if (tokens[i].includes(",")) {
-                let splitted = tokens[i].split(",");
-                for (let j = 0; j < splitted.length; j++) {
+                var splitted = tokens[i].split(",");
+                for (var j = 0; j < splitted.length; j++) {
                     ret.push(splitted[j]);
                 }
             }
@@ -25,6 +25,7 @@ class Tokenizer {
         }
         console.log("tokens: " + ret);
         return ret;
-    }
-}
+    };
+    return Tokenizer;
+}());
 exports.Tokenizer = Tokenizer;

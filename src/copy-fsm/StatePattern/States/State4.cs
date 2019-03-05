@@ -8,17 +8,17 @@ namespace StatePattern.States
 {
     class State4 : State
     {
-        public override void parse(Parser context, string toParse)
+        public override string Parse(Parser context, string toParse, List<DBTable> tables)
         {
             switch (toParse)
             {
-                case ("-R"):
-                    context.changeState(8);
-                    break;
+                case ("WHR"):
+                    context.changeState(5);
+                    return "WHERE";
                 default:
                     Console.WriteLine("parsing error");
                     context.changeState(11);
-                    break;
+                    return "";
             }
         }
     }

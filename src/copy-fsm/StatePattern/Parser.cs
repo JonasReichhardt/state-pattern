@@ -9,49 +9,37 @@ using System.Windows.Forms;
 
 namespace StatePattern
 {
-    public class Parser
+    internal class Parser
     {
         private State[] states;
         private State current;
-        private bool isAcceptable;
-        private string msg;
+        public DBTable selected { get; internal set; }
+        public List<DBTable> Tables { get; private set; }
+        public bool IsAcceptable { get; private set; }
 
-        public Parser()
+        public Parser(List<DBTable> tables)
         {
-            setState();
+            IsAcceptable = false;
+            Tables = tables;
+            setStates();
             reset();
         }
 
-        public string parse(String toParse)
+        public string Parse(string input)
         {
-            String[] parts = toParse.Split(' ');
-            for(int i = 1; i < parts.Length; i++)
-            {
-                msg += "parsing: "+parts[i]+"\n";
-                current.parse(this, parts[i]);
-            }
-
-            if(current is EndState)
-            {
-                isAcceptable = true;
-            }
-            else
-            {
-                isAcceptable = false;
-            }
-
-            msg += "Command accepted? " + isAcceptable;
-            Task.Delay(100).ContinueWith(t => reset());
-            return msg;
+            return current.Parse(this, input);
         }
 
         public void changeState(int state)
         {
            current = states[state];
-           msg+= "Current state: " + current.GetType()+"\n";
+           if (current is EndState)
+           {
+                IsAcceptable = true;
+           }
         }
         
-        private void setState()
+        private void setStates()
         {
             Console.WriteLine("setting fsm states");
             states = new State[12];
@@ -73,7 +61,6 @@ namespace StatePattern
         {
             Console.WriteLine("reseting fsm state");
             current = states[0];
-            msg = "";
         }
     }
 }

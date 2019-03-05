@@ -8,17 +8,32 @@ namespace StatePattern.States
 {
     class State2 : State
     {
-        public override void parse(Parser context, String toParse)
+        public override string Parse(Parser context, string toParse)
         {
-            switch (toParse)
+            bool isAttr = false;
+            foreach (DBTable table in context.Tables)
             {
-                case ("-R"):
-                    context.changeState(8);
-                    break;
-                default:
-                    Console.WriteLine("parsing error");
-                    context.changeState(11);
-                    break;
+                if (table.Attributes.Contains(toParse))
+                {
+                    isAttr = true;
+                }
+            }
+            if (isAttr)
+            {
+                //change to State2
+                context.changeState(2);
+                return toParse;
+            }
+            else if(toParse.Equals("FRM"))
+            {
+                context.changeState(3);
+                return "FROM";
+            }
+            else
+            {
+                Console.WriteLine("parsing error");
+                context.changeState(11);
+                return "";
             }
         }
     }

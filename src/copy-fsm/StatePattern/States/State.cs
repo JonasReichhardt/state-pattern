@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace StatePattern.States
 {
-    public abstract class State
+    internal abstract class State
     {
-        abstract public void parse(Parser context, String toParse);
+        abstract public string Parse(Parser context, string toParse);
     }
 }

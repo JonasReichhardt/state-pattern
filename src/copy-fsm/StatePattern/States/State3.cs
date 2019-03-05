@@ -8,17 +8,40 @@ namespace StatePattern.States
 {
     class State3 : State
     {
-        public override void parse(Parser context, string toParse)
+        public override string Parse(Parser context, string toParse)
         {
-            switch (toParse)
+            bool isTable = false;
+            bool isLast = false;
+            if (toParse.EndsWith(";"))
             {
-                case ("-R"):
-                    context.changeState(8);
-                    break;
-                default:
-                    Console.WriteLine("parsing error");
-                    context.changeState(11);
-                    break;
+                isLast = true;
+            }
+            foreach(DBTable table in context.Tables)
+            {
+                if (table.Name.Equals(toParse))
+                {
+                    isTable = true;
+                    context.selected = table;
+                    if()
+                }
+            }
+            if (isTable)
+            {
+                if (isLast)
+                {
+                    context.changeState(10);
+                }
+                else
+                {
+                    context.changeState(4);
+                }
+                return toParse;
+            }
+            else
+            {
+                context.changeState(11);
+                Console.WriteLine("parse error");
+                return "";
             }
         }
     }
