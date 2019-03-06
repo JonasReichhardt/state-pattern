@@ -11,8 +11,9 @@ If you want information regarding myself visit my [website](www.jonasreichhardt.
 
 ## TODO
 
+Check if table has the selected attributes (in Parser.cs new Property named selectedAttr)
+
+Consider * in the attributes. (State2 check if *) -  IMPLEMENTED - NOT TESTED
+
 Refactor States so only one context.changeState() at the end is called. (in Parse() method set int and at the and call the function and return)
 
-Consider * in the attributes. 
-
-Check if table has the selected attributes (in Parser.cs new Property named selectedAttr)
