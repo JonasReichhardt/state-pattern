@@ -4,7 +4,7 @@ Jonas Reichhardt - HTL Perg - .Net C# - 12.3.2019
 
 
 
-Das State-Pattern erlaubt Objekten ihr Verhalten zu ändern wenn sich der interne Zustand des Objektes verändert. Anwendung findet dieses Design Pattern bei der Implementierung von flachen endlichen Zustandsautomaten (FSM) in objektorientierten Programmiersprachen. Zustandsautomaten werden oft für syntaktische bzw. grammatische Analysen von (Programmier)sprachen. Konkrete Beispiele sind JSON-Parser, SQL-Parser, Command Line Parser und Compiler/Interpreter.
+Das State-Pattern erlaubt Objekten ihr Verhalten zu ändern wenn sich der interne Zustand des Objektes verändert. Anwendung findet dieses Design Pattern bei der Implementierung von flachen endlichen Zustandsautomaten (FSM), welche auf Seite 2 erläutert werden. Zustandsautomaten werden oft für syntaktische bzw. grammatische Analysen von (Programmier)sprachen eingesetzt. Konkrete Beispiele sind JSON-Parser, SQL-Parser, Command Line Parser und Compiler/Interpreter.
 
 ### Motivation
 
