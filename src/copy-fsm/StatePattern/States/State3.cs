@@ -10,39 +10,53 @@ namespace StatePattern.States
     {
         public override string Parse(Parser context, string toParse)
         {
+            int nextState = 9;
+            string ret = "";
             bool isTable = false;
             bool isLast = false;
+            bool hasAttr = true;
+
             if (toParse.EndsWith(";"))
             {
                 isLast = true;
+                toParse = toParse.Trim(';');
             }
+
             foreach(DBTable table in context.Tables)
             {
                 if (table.Name.Equals(toParse))
                 {
+                    context.selectedTable = table;
                     isTable = true;
-                    context.selected = table;
-                    if()
+                    foreach(string attr in context.selectedAttr)
+                    {
+                        if (!table.Attributes.Contains(attr))
+                        {
+                            hasAttr = false;
+                        }
+                    }
                 }
             }
+
             if (isTable)
             {
+                if (!hasAttr)
+                {
+                    nextState = 9;
+                }
                 if (isLast)
                 {
-                    context.changeState(10);
+                    nextState = 8;
+                    ret = toParse + ";";
                 }
                 else
                 {
-                    context.changeState(4);
+                    nextState = 4;
+                    ret = toParse;
                 }
-                return toParse;
             }
-            else
-            {
-                context.changeState(11);
-                Console.WriteLine("parse error");
-                return "";
-            }
+            context.changeState(nextState);
+            return ret;
         }
     }
 }

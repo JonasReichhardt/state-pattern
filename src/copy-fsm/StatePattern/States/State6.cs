@@ -8,20 +8,17 @@ namespace StatePattern.States
 {
     class State6 : State
     {
-        public override void parse(Parser context, string toParse)
+        public override string Parse(Parser context, string toParse)
         {
-            switch (toParse)
+            int nextState = 9;
+            string ret = "";
+            if (toParse.Equals("="))
             {
-                //TODO
-                //Regex arg(SRC)
-                case ("SRC"):
-                    context.changeState(9);
-                    break;
-                default:
-                    Console.WriteLine("parsing error");
-                    context.changeState(11);
-                    break;
+                nextState = 7;
+                ret = toParse;
             }
+            context.changeState(nextState);
+            return ret;
         }
     }
 }

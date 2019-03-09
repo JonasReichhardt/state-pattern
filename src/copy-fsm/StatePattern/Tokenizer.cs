@@ -28,8 +28,6 @@ namespace StatePattern
                     }
                 }
             }
-
-            Console.WriteLine("tokens:"+ ret);
             return ret.ToArray<string>();
         }
     }

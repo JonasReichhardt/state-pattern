@@ -8,9 +8,9 @@ namespace StatePattern.States
 {
     class ErrorState : State
     {
-        public override void parse(Parser context, string toParse)
+        public override string Parse(Parser context, string toParse)
         {
-            
+            return "";
         }
     }
 }

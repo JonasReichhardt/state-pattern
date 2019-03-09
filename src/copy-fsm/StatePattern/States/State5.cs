@@ -8,27 +8,27 @@ namespace StatePattern.States
 {
     class State5 : State
     {
-        public override string Parse(Parser context, string toParse, List<DBTable> tables)
+        public override string Parse(Parser context, string toParse)
         {
+            int nextState = 9;
+            string ret = "";
             bool isAttr = false;
-            foreach (DBTable table in tables)
+
+            foreach (string attr in context.selectedTable.Attributes)
             {
-                if (table.Attributes.Contains(toParse))
+                if (attr.Equals(toParse))
                 {
                     isAttr = true;
                 }
             }
+
             if (isAttr)
             {
-                context.changeState(6);
-                return toParse;
+                nextState = 6;
+                ret = toParse;
             }
-            else
-            {
-                Console.WriteLine("parsing error");
-                context.changeState(11);
-                return "";
-            }
+            context.changeState(nextState);
+            return ret;
         }
     }
 }

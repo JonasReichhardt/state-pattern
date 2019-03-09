@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBConnector.cs" />
     <Compile Include="DBTable.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Main.cs">
@@ -67,8 +68,6 @@
     <Compile Include="States\State5.cs" />
     <Compile Include="States\State6.cs" />
     <Compile Include="States\State7.cs" />
-    <Compile Include="States\State8.cs" />
-    <Compile Include="States\State9.cs" />
     <Compile Include="Tokenizer.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

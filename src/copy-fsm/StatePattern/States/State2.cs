@@ -10,6 +10,8 @@ namespace StatePattern.States
     {
         public override string Parse(Parser context, string toParse)
         {
+            int nextState = 9;
+            string ret = "";
             bool isAttr = false;
             foreach (DBTable table in context.Tables)
             {
@@ -18,23 +20,19 @@ namespace StatePattern.States
                     isAttr = true;
                 }
             }
-            if (isAttr)
+            if (isAttr && !context.selectedAttr.Contains("*"))
             {
-                //change to State2
-                context.changeState(2);
-                return toParse;
+                context.addSelectedAttr(toParse);
+                nextState = 2;
+                ret = toParse;
             }
             else if(toParse.Equals("FRM"))
             {
-                context.changeState(3);
-                return "FROM";
+                nextState = 3;
+                ret = "FROM";
             }
-            else
-            {
-                Console.WriteLine("parsing error");
-                context.changeState(11);
-                return "";
-            }
+            context.changeState(nextState);
+            return ret;
         }
     }
 }

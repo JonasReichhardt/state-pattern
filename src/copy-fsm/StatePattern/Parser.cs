@@ -12,13 +12,15 @@ namespace StatePattern
     internal class Parser
     {
         private State[] states;
-        private State current;
-        public DBTable selected { get; internal set; }
+        public State current { get; internal set; }
+        public DBTable selectedTable { get; internal set; }
+        public List<string> selectedAttr { get; internal set; }
         public List<DBTable> Tables { get; private set; }
         public bool IsAcceptable { get; private set; }
 
         public Parser(List<DBTable> tables)
         {
+            selectedAttr = new List<string>();
             IsAcceptable = false;
             Tables = tables;
             setStates();
@@ -27,6 +29,8 @@ namespace StatePattern
 
         public string Parse(string input)
         {
+            Console.WriteLine("old state: "+current.ToString());
+            Console.WriteLine("input:" + input);
             return current.Parse(this, input);
         }
 
@@ -37,12 +41,13 @@ namespace StatePattern
            {
                 IsAcceptable = true;
            }
+            Console.WriteLine("new state: " + current.ToString());
         }
         
         private void setStates()
         {
             Console.WriteLine("setting fsm states");
-            states = new State[12];
+            states = new State[10];
             states[0] = new StartState();
             states[1] = new State1();
             states[2] = new State2();
@@ -51,16 +56,20 @@ namespace StatePattern
             states[5] = new State5();
             states[6] = new State6();
             states[7] = new State7();
-            states[8] = new State8();
-            states[9] = new State9();
-            states[10] = new EndState();
-            states[11] = new ErrorState();
+            states[8] = new EndState();
+            states[9] = new ErrorState();
         }
 
-        private void reset()
+        public void reset()
         {
             Console.WriteLine("reseting fsm state");
             current = states[0];
+            IsAcceptable = false;
+        }
+
+        internal void addSelectedAttr(string attr)
+        {
+            selectedAttr.Add(attr);
         }
     }
 }

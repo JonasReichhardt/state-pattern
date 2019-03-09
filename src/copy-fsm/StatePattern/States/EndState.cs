@@ -8,9 +8,9 @@ namespace StatePattern.States
 {
     class EndState : State
     {
-        public override void parse(Parser context, String toParse)
+        public override string Parse(Parser context, string toParse)
         {
-            
+            return "end";
         }
     }
 }
