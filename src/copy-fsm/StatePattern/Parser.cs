@@ -29,8 +29,6 @@ namespace StatePattern
 
         public string Parse(string input)
         {
-            Console.WriteLine("old state: "+current.ToString());
-            Console.WriteLine("input:" + input);
             return current.Parse(this, input);
         }
 
@@ -41,7 +39,6 @@ namespace StatePattern
            {
                 IsAcceptable = true;
            }
-            Console.WriteLine("new state: " + current.ToString());
         }
         
         private void setStates()

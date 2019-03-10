@@ -11,5 +11,5 @@ If you want information regarding myself visit my [website](www.jonasreichhardt.
 
 ## TODO
 
-Connect to DB and send parsed statements, retrieve data and display it in the DataGridView
+Presentation
 

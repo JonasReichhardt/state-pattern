@@ -11,7 +11,7 @@ namespace StatePattern.States
         public override string Parse(Parser context, string toParse)
         {
             int nextState = 9;
-            string ret = "";
+            string ret = "eAttribut oder FRM nicht gefunden";
             bool isAttr = false;
             foreach (DBTable table in context.Tables)
             {
@@ -24,7 +24,7 @@ namespace StatePattern.States
             {
                 context.addSelectedAttr(toParse);
                 nextState = 2;
-                ret = toParse;
+                ret = ","+toParse;
             }
             else if(toParse.Equals("FRM"))
             {

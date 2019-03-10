@@ -10,16 +10,17 @@ namespace StatePattern.States
     {
         public override string Parse(Parser context, string toParse)
         {
-            switch(toParse)
+            int nextState = 9;
+            string ret = "eKein SLCT gefunden";
+
+            if (toParse.Equals("SLCT"))
             {
-                case ("SLCT"):
-                    context.changeState(1);
-                    return "SELECT";
-                default:
-                    Console.WriteLine("parsing error");
-                    context.changeState(11);
-                    return "";
+                nextState = 1;
+                ret = "SELECT";
             }
+
+            context.changeState(nextState);
+            return ret;
         }
     }
 }

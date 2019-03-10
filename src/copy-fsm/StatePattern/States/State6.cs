@@ -11,7 +11,7 @@ namespace StatePattern.States
         public override string Parse(Parser context, string toParse)
         {
             int nextState = 9;
-            string ret = "";
+            string ret = "e'=' nicht gefunden";
             if (toParse.Equals("="))
             {
                 nextState = 7;

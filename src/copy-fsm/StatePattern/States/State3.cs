@@ -11,7 +11,7 @@ namespace StatePattern.States
         public override string Parse(Parser context, string toParse)
         {
             int nextState = 9;
-            string ret = "";
+            string ret = "eTabelle nicht gefunden oder\nTabelle hat angegebenen Attribute nicht";
             bool isTable = false;
             bool isLast = false;
             bool hasAttr = true;

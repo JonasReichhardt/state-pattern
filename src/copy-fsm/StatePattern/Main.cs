@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace StatePattern
 {
     public partial class Main : Form
     {
-        private Parser Context { get; set; }
+        private Parser parser { get; set; }
         private List<DBTable> Tables { get; set; }
         private DBConnector dbCon;
         private string Command { get; set; }
@@ -21,14 +22,19 @@ namespace StatePattern
         {
             InitializeComponent();
             dbCon = new DBConnector();
-            Tables = new List<DBTable>();
-            DBTable table = new DBTable("user");
-            table.addAttribute("idUser");
-            table.addAttribute("firstname");
-            table.addAttribute("lastname");
-            Tables.Add(table);
-            Context = new Parser(Tables);
-            dataGridView1.DataSource = dbCon.runCommand("Select * from dbo.user;");
+
+            // get table structure from Database
+            try {
+                Tables = dbCon.GetDBTables();
+            }
+            catch (SqlException ex)
+            {
+                label1.Text = "Datenbankstrukur konnte\n nicht ermittelt werden\n Überprüfen Sie die Verbindung";
+            }
+           
+
+            // set up new parser with table structure
+            parser = new Parser(Tables);
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -44,10 +50,28 @@ namespace StatePattern
 
             parseCommand();
 
-            label1.Text += "SQL-Kommando: " + Command;
+            
+            // data bind queried data
+            if (parser.IsAcceptable)
+            {
+                try
+                {
+                    label1.Text += "Ausgeführtes SQL-Kommando\n" + Command;
+                    DataSet dset = dbCon.runCommand(Command);
+                    dataGridView1.DataSource = dset.Tables[0].DefaultView;
+                }
+                catch (Exception ex)
+                {
+                    label1.Text += "Ein oder mehrere Fehler gefunden";
+                }
+            }
+
+
             ParseInput.Enabled = true;
             button1.Enabled = true;
-            Context.reset();
+
+            // reset fsm
+            parser.reset();
         }
 
         private void parseCommand()
@@ -57,19 +81,13 @@ namespace StatePattern
 
             for(int i=0;i<tokens.Length; i++)
             {
-                string commandPart = Context.Parse(tokens[i]);
-                
-                if (commandPart.Length < 0)
-                {
-                    label1.Text += "parse error";
-                }
-                else
-                {
-                    Command += " " + commandPart;
-                }
+                // delegate parsing call to current state
+                string commandPart = parser.Parse(tokens[i]);
 
-                // set color
-                if (Context.IsAcceptable)
+                Command += " " + commandPart;
+
+                // set color regarding parser state
+                if (parser.IsAcceptable)
                 {
                     label1.ForeColor = Color.DarkGreen;
                 }
@@ -77,9 +95,15 @@ namespace StatePattern
                 {
                     label1.ForeColor = Color.DarkRed;
                 }
-            
-                label1.Text += tokens[i] + " geprüft \n";
-                
+
+                if (commandPart.StartsWith("e"))
+                {
+                    label1.Text += "Fehler: "+ commandPart.Trim('e') + "\n";
+                }
+                else
+                {
+                    label1.Text += tokens[i] + " geprüft \n";
+                }
             }
         }
 
@@ -101,6 +125,16 @@ namespace StatePattern
         private void ParseInput_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace StatePattern.States
         public override string Parse(Parser context, string toParse)
         {
             int nextState = 9;
-            string ret = "";
+            string ret = "eAttribute nicht vorhanden";
             bool isAttr = false;
 
             foreach (string attr in context.selectedTable.Attributes)

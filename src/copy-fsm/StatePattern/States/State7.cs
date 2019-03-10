@@ -11,12 +11,16 @@ namespace StatePattern.States
         public override string Parse(Parser context, string toParse)
         {
             int nextState = 9;
-            string ret = "";
+            string ret = "Attribut nicht vorhanden\noder nicht vom Typ 'String'";
 
-            if (toParse.StartsWith('"'.ToString()) && toParse.EndsWith('"'.ToString()))
+            if (toParse.EndsWith(";"))
             {
-                nextState = 10;
-                ret = toParse;
+                toParse = toParse.Trim(';');
+                if (toParse.StartsWith("'") && toParse.EndsWith("'"))
+                {
+                    nextState = 8;
+                    ret = toParse+";";
+                }
             }
             context.changeState(nextState);
             return ret;
