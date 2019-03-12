@@ -19,7 +19,7 @@ namespace StatePattern.States
                 ret = "SELECT";
             }
 
-            context.changeState(nextState);
+            context.ChangeState(nextState);
             return ret;
         }
     }

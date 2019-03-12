@@ -13,26 +13,27 @@ namespace StatePattern
     {
         private State[] states;
         public State current { get; internal set; }
+        public bool IsAcceptable { get; private set; }
         public DBTable selectedTable { get; internal set; }
         public List<string> selectedAttr { get; internal set; }
         public List<DBTable> Tables { get; private set; }
-        public bool IsAcceptable { get; private set; }
 
         public Parser(List<DBTable> tables)
         {
             selectedAttr = new List<string>();
             IsAcceptable = false;
             Tables = tables;
-            setStates();
-            reset();
+            SetStates();
+            Reset();
         }
 
+        // delegate Parse() to current state
         public string Parse(string input)
         {
             return current.Parse(this, input);
         }
 
-        public void changeState(int state)
+        public void ChangeState(int state)
         {
            current = states[state];
            if (current is EndState)
@@ -41,7 +42,7 @@ namespace StatePattern
            }
         }
         
-        private void setStates()
+        private void SetStates()
         {
             Console.WriteLine("setting fsm states");
             states = new State[10];
@@ -57,14 +58,14 @@ namespace StatePattern
             states[9] = new ErrorState();
         }
 
-        public void reset()
+        public void Reset()
         {
             Console.WriteLine("reseting fsm state");
             current = states[0];
             IsAcceptable = false;
         }
 
-        internal void addSelectedAttr(string attr)
+        internal void AddSelectedAttr(string attr)
         {
             selectedAttr.Add(attr);
         }

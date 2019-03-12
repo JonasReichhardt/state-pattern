@@ -12,6 +12,7 @@
 *.png
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+*.pptx
 
 # Build results
 [Dd]ebug/

@@ -27,7 +27,7 @@ namespace StatePattern.States
                 nextState = 6;
                 ret = toParse;
             }
-            context.changeState(nextState);
+            context.ChangeState(nextState);
             return ret;
         }
     }

@@ -22,7 +22,7 @@ namespace StatePattern.States
             }
             if (isAttr && !context.selectedAttr.Contains("*"))
             {
-                context.addSelectedAttr(toParse);
+                context.AddSelectedAttr(toParse);
                 nextState = 2;
                 ret = ","+toParse;
             }
@@ -31,7 +31,7 @@ namespace StatePattern.States
                 nextState = 3;
                 ret = "FROM";
             }
-            context.changeState(nextState);
+            context.ChangeState(nextState);
             return ret;
         }
     }

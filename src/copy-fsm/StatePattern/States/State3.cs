@@ -55,7 +55,7 @@ namespace StatePattern.States
                     ret = toParse;
                 }
             }
-            context.changeState(nextState);
+            context.ChangeState(nextState);
             return ret;
         }
     }

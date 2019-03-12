@@ -23,10 +23,10 @@ namespace StatePattern.States
             if (isAttr)
             {
                 nextState = 2;
-                context.addSelectedAttr(toParse);
+                context.AddSelectedAttr(toParse);
                 ret = toParse;
             }
-            context.changeState(nextState);
+            context.ChangeState(nextState);
             return ret;
         }
     }

@@ -17,7 +17,7 @@ namespace StatePattern.States
                 nextState = 5;
                 ret = "WHERE";
             }
-            context.changeState(nextState);
+            context.ChangeState(nextState);
             return ret;
         }
     }
